@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-5 d-flex align-items-center justify-content-center">
+  <div class="container w-50  ">
+    <div class="form p-4 shadow rounded bg-light">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
+      {% endif %}
+
+      <form action="https://formsubmit.co/nthakur8435@gmail.com" method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label"><i class="fas fa-user form-icon me-2"></i>Your Name</label><br>
+          {{ form.name }}
+          {% if form.name.errors %}
+          <small class="text-danger">{{ form.name.errors.0 }}</small>
+          {% endif %}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label"><i class="fas fa-envelope form-icon me-2"></i>Email Address</label><br>
+          {{ form.email }}
+          {% if form.email.errors %}
+          <small class="text-danger">{{ form.email.errors.0 }}</small>
+          {% endif %}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Subject</label><br>
+          {{ form.subject }}
+          {% if form.subject.errors %}
+          <small class="text-danger">{{ form.subject.errors.0 }}</small>
+          {% endif %}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Your Message</label><br>
+          {{ form.message }}
+          {% if form.message.errors %}
+          <small class="text-danger">{{ form.message.errors.0 }}</small>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-50 btn-custom">
+          <i class="fas fa-paper-plane me-2"></i> Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
